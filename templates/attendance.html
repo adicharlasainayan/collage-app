@@ -1,0 +1,24 @@
+<h2>Attendance</h2>
+<form method="POST">
+<table border="1">
+{% for s in students %}
+<tr>
+<td>{{s[1]}}</td>
+<td>
+<select name="status_{{s[0]}}">
+<option>Present</option>
+<option>Absent</option>
+</select>
+</td>
+<td>
+<select name="late_{{s[0]}}">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</td>
+</tr>
+{% endfor %}
+</table>
+Date:<input type="date" name="date">
+<button>Submit</button>
+</form>

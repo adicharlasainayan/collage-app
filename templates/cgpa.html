@@ -1,0 +1,5 @@
+<h2>Your Marks</h2>
+{% for r in rows %}
+<p>{{r[0]}} : {{r[1]}} (Credit {{r[2]}})</p>
+{% endfor %}
+<h3>CGPA: {{cgpa}}</h3>

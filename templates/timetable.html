@@ -1,0 +1,12 @@
+<h2>Timetable</h2>
+<form method="POST">
+Day:<input name="day">
+Start:<input name="start">
+End:<input name="end">
+Subject:<input name="subject">
+<button>Add</button>
+</form>
+
+{% for t in data %}
+<p>{{t}}</p>
+{% endfor %}

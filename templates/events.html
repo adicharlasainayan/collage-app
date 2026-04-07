@@ -1,0 +1,10 @@
+<h2>Events / Holidays</h2>
+<form method="POST">
+Title:<input name="title">
+Date:<input type="date" name="date">
+Desc:<input name="desc">
+<button>Add</button>
+</form>
+{% for e in data %}
+<p>{{e[0]}} - {{e[1]}} - {{e[2]}}</p>
+{% endfor %}

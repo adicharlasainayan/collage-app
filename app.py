@@ -3,6 +3,9 @@ import sqlite3, smtplib
 from datetime import datetime
 
 app = Flask(__name__)
+@app.route("/")
+def home():
+    return "College App is Running Successfully ✅"
 
 # ---------- EMAIL FUNCTION ----------
 def send_mail(to_email, msg):

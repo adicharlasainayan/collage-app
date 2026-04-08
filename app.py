@@ -9,7 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 @app.route("/")
 def home():
-    return "College App is Running Successfully ✅"
+    return render_template("login.html")
 
 # ---------- EMAIL FUNCTION ----------
 def send_mail(to_email, msg):

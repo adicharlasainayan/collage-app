@@ -1,3 +1,7 @@
+import os
+
+if not os.path.exists("database.db"):
+    import create_db
 from flask import Flask, render_template, request
 import sqlite3, smtplib
 from datetime import datetime

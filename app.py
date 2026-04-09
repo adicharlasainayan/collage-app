@@ -182,23 +182,27 @@ def alumni():
     return render_template('alumni.html',data=data)
 
 # ---------- EVENTS ----------
-@app.route('/events',methods=['GET','POST'])
+@app.route('/events', methods=['GET','POST'])
 def events():
-    conn=sqlite3.connect('database.db')
-    cur=conn.cursor()
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
 
-    if request.method=='POST':
-        title=request.form['title']
-        date=request.form['date']
-        desc=request.form['desc']
-        cur.execute("INSERT INTO events VALUES (?,?,?)",(title,date,desc))
+    if request.method == 'POST':
+        title = request.form['title']
+        desc  = request.form['desc']
+        date  = request.form['date']
+
+        cur.execute(
+            "INSERT INTO events (title, description, date) VALUES (?,?,?)",
+            (title, desc, date)
+        )
         conn.commit()
 
-    cur.execute("SELECT * FROM events")
-    data=cur.fetchall()
+    cur.execute("SELECT * FROM events ORDER BY date DESC")
+    events = cur.fetchall()
     conn.close()
-    return render_template('events.html',data=data)
 
+    return render_template('events.html', events=events)
 # ---------- TIMETABLE (simple clash check) ----------
 @app.route('/timetable',methods=['GET','POST'])
 def timetable():

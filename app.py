@@ -22,33 +22,31 @@ def student():
     conn = sqlite3.connect('database.db')
     cur = conn.cursor()
 
-    # Attendance
-    cur.execute("SELECT present, total FROM attendance")
-    data = cur.fetchall()
+    # Attendance calculation
+    cur.execute("SELECT present, total FROM attendance WHERE student_email=?", (session['email'],))
+    row = cur.fetchone()
 
-    total_present = sum([i[0] for i in data])
-    total_classes = sum([i[1] for i in data])
-
-    if total_classes == 0:
-        percent = 0
+    if row:
+        present, total = row
+        percent = int((present / total) * 100)
     else:
-        percent = (total_present / total_classes) * 100
+        percent = 0
 
     # Events
     cur.execute("SELECT * FROM events")
     events = cur.fetchall()
 
     # Marks
-    cur.execute("SELECT * FROM marks")
+    cur.execute("SELECT * FROM marks WHERE student_email=?", (session['email'],))
     marks = cur.fetchall()
 
     conn.close()
 
     return render_template(
         "student_dashboard.html",
+        percent=percent,
         events=events,
-        marks=marks,
-        percent=percent
+        marks=marks
     )
 
 # ---------------- TEACHER ----------------

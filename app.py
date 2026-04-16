@@ -17,19 +17,39 @@ def login():
         return redirect("/teacher")
 
 # ---------------- STUDENT ----------------
-@app.route("/student")
+@app.route('/student')
 def student():
-    conn=sqlite3.connect("database.db")
-    cur=conn.cursor()
+    conn = sqlite3.connect('database.db')
+    cur = conn.cursor()
 
+    # Attendance
+    cur.execute("SELECT present, total FROM attendance")
+    data = cur.fetchall()
+
+    total_present = sum([i[0] for i in data])
+    total_classes = sum([i[1] for i in data])
+
+    if total_classes == 0:
+        percent = 0
+    else:
+        percent = (total_present / total_classes) * 100
+
+    # Events
     cur.execute("SELECT * FROM events")
-    events=cur.fetchall()
+    events = cur.fetchall()
 
-    cur.execute("SELECT subject,marks FROM marks WHERE student_id=1")
-    marks=cur.fetchall()
+    # Marks
+    cur.execute("SELECT * FROM marks")
+    marks = cur.fetchall()
 
     conn.close()
-    return render_template("student_dashboard.html",events=events,marks=marks)
+
+    return render_template(
+        "student_dashboard.html",
+        events=events,
+        marks=marks,
+        percent=percent
+    )
 
 # ---------------- TEACHER ----------------
 @app.route("/teacher")

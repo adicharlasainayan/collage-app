@@ -1,4 +1,35 @@
-<h2>Top 10</h2>
-{% for d in data %}
-<p>{{d[0]}} - CGPA: {{d[1]}}</p>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top 10 Students</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">Top 10 Students (By Total Marks)</div>
+
+<div class="container">
+    <div class="card">
+
+        <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#0b3d91; color:white;">
+                <th style="padding:8px; border:1px solid #ccc;">Rank</th>
+                <th style="padding:8px; border:1px solid #ccc;">Student ID</th>
+                <th style="padding:8px; border:1px solid #ccc;">Total Marks</th>
+            </tr>
+
+            {% for t in data %}
+            <tr>
+                <td style="padding:8px; border:1px solid #ccc;">{{loop.index}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{t[0]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{t[1]}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

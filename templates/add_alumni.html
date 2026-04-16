@@ -1,7 +1,36 @@
-<form method="POST">
-Name:<input name="name"><br>
-Year:<input name="year"><br>
-Dept:<input name="dept"><br>
-Package:<input name="package"><br>
-<button>Add</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Alumni</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">Add Alumni Details</div>
+
+<div class="container">
+    <div class="card">
+
+        <h3>Enter Passed Out Student Details</h3>
+
+        <form method="POST">
+
+            <label>Alumni Name</label>
+            <input type="text" name="name" required>
+
+            <label>Package (LPA)</label>
+            <input type="text" name="package" required>
+
+            <label>Passout Year</label>
+            <input type="text" name="year" required>
+
+            <br><br>
+            <button type="submit">Add Alumni</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

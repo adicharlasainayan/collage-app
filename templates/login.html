@@ -1,10 +1,37 @@
-<h2>Login</h2>
-<form method="POST">
-Email:<input name="email"><br>
-Password:<input type="password" name="password"><br>
-<select name="role">
-<option value="student">Student</option>
-<option value="teacher">Teacher</option>
-</select><br>
-<button>Login</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Portal Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">KMIT NETRA – College Portal</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Login</h2>
+
+        <form action="/login" method="POST">
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Role</label>
+            <select name="role" required>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+            </select>
+
+            <br><br>
+            <button type="submit">Login</button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

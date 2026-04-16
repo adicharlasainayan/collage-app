@@ -1,4 +1,33 @@
-<h2>Alumni</h2>
-{% for a in data %}
-<p>{{a[0]}} | {{a[1]}} | {{a[3]}} LPA</p>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alumni & Packages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">Alumni & Placement Packages</div>
+
+<div class="container">
+    <div class="card">
+
+        <h3>Passed Out Students</h3>
+
+        <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#0b3d91; color:white;">
+                <th style="padding:8px; border:1px solid #ccc;">Name</th>
+                <th style="padding:8px; border:1px solid #ccc;">Package (LPA)</th>
+                <th style="padding:8px; border:1px solid #ccc;">Passout Year</th>
+            </tr>
+
+            {% for a in data %}
+            <tr>
+                <td style="padding:8px; border:1px solid #ccc;">{{a[0]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{a[1]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{a[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</div>

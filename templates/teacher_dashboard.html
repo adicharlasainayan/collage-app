@@ -1,5 +1,45 @@
-<h2>Teacher</h2>
-<a href="/attendance">Mark Attendance</a><br>
-<a href="/add_marks">Add Marks</a><br>
-<a href="/top10">Top 10</a><br>
-<a href="/alumni">Alumni</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">Teacher Dashboard (Drona Style)</div>
+
+<div class="container">
+
+    <div class="card">
+        <h3>📝 Take Attendance</h3>
+        <a href="/attendance">Open Attendance Sheet</a>
+    </div>
+
+    <div class="card">
+        <h3>📅 Add Events / Holidays</h3>
+        <a href="/events">Manage Events</a>
+    </div>
+
+    <div class="card">
+        <h3>📝 Add Student Marks</h3>
+        <a href="/add_marks">Enter Marks</a>
+    </div>
+
+    <div class="card">
+        <h3>📖 Manage Timetable</h3>
+        <a href="/timetable">View Timetable</a>
+    </div>
+
+    <div class="card">
+        <h3>🎓 Add Alumni Details</h3>
+        <a href="/add_alumni">Add Alumni</a>
+    </div>
+
+    <div class="card">
+        <h3>👀 View Attendance Records</h3>
+        <a href="/view_attendance">View Attendance</a>
+    </div>
+
+</div>
+</body>
+</html>

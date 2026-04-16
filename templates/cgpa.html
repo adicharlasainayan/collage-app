@@ -1,5 +1,39 @@
-<h2>Your Marks</h2>
-{% for r in rows %}
-<p>{{r[0]}} : {{r[1]}} (Credit {{r[2]}})</p>
-{% endfor %}
-<h3>CGPA: {{cgpa}}</h3>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CGPA Calculation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">CGPA Details</div>
+
+<div class="container">
+    <div class="card">
+
+        <h3>Your Subject Grades</h3>
+
+        <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#0b3d91; color:white;">
+                <th style="padding:8px; border:1px solid #ccc;">Subject</th>
+                <th style="padding:8px; border:1px solid #ccc;">Marks</th>
+                <th style="padding:8px; border:1px solid #ccc;">Grade Point</th>
+            </tr>
+
+            {% for s in subjects %}
+            <tr>
+                <td style="padding:8px; border:1px solid #ccc;">{{s[0]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{s[1]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{s[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br>
+        <h3>Final CGPA: <b>{{cgpa}}</b></h3>
+
+    </div>
+</div>
+
+</body>
+</html>

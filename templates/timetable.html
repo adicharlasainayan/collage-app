@@ -1,12 +1,55 @@
-<h2>Timetable</h2>
-<form method="POST">
-Day:<input name="day">
-Start:<input name="start">
-End:<input name="end">
-Subject:<input name="subject">
-<button>Add</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timetable</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-{% for t in data %}
-<p>{{t}}</p>
-{% endfor %}
+<div class="navbar">Class Timetable</div>
+
+<div class="container">
+
+    <!-- Add Timetable (Teacher) -->
+    <div class="card">
+        <h3>Add Timetable Entry</h3>
+        <form method="POST" action="/add_timetable">
+            <label>Day</label>
+            <input type="text" name="day" placeholder="Monday" required>
+
+            <label>Period</label>
+            <input type="text" name="period" placeholder="1" required>
+
+            <label>Subject</label>
+            <input type="text" name="subject" required>
+
+            <br><br>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <!-- View Timetable -->
+    <div class="card">
+        <h3>Weekly Timetable</h3>
+
+        <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#0b3d91; color:white;">
+                <th style="padding:8px; border:1px solid #ccc;">Day</th>
+                <th style="padding:8px; border:1px solid #ccc;">Period</th>
+                <th style="padding:8px; border:1px solid #ccc;">Subject</th>
+            </tr>
+
+            {% for t in tt %}
+            <tr>
+                <td style="padding:8px; border:1px solid #ccc;">{{t[0]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{t[1]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{t[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</div>
+</body>
+</html>

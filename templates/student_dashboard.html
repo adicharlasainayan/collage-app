@@ -1,4 +1,53 @@
-<h2>Student</h2>
-<a href="/view_attendance/1">View Attendance %</a><br>
-<a href="/top10">Top 10</a><br>
-<a href="/alumni">Alumni</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">Student Dashboard</div>
+
+<div class="container">
+
+    <div class="card">
+        <h3>📊 Attendance Status</h3>
+        <p>Your Attendance: <b>{{percent}}%</b></p>
+        {% if percent < 75 %}
+        <p style="color:red;">⚠ Attendance below 75% !</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h3>📅 Events & Holidays</h3>
+        {% for e in events %}
+            <p><b>{{e[1]}}</b> — {{e[2]}} — {{e[3]}}</p>
+        {% endfor %}
+    </div>
+
+    <div class="card">
+        <h3>📝 Marks</h3>
+        {% for m in marks %}
+            <p>{{m[0]}} : {{m[1]}}</p>
+        {% endfor %}
+        <a href="/cgpa">View CGPA</a>
+    </div>
+
+    <div class="card">
+        <h3>📖 Timetable</h3>
+        <a href="/timetable">View Timetable</a>
+    </div>
+
+    <div class="card">
+        <h3>🏆 Top 10 Students</h3>
+        <a href="/top10">View Rankings</a>
+    </div>
+
+    <div class="card">
+        <h3>🎓 Alumni & Packages</h3>
+        <a href="/alumni">View Alumni</a>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,18 +1,55 @@
-<h2>Events / Holidays</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Events & Holidays</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-<form method="POST">
-Title: <input name="title"><br>
-Date: <input type="date" name="date"><br>
-Desc: <input name="desc"><br>
-<button>Add</button>
-</form>
+<div class="navbar">Events & Holidays</div>
 
-<hr>
+<div class="container">
 
-{% for e in events %}
-<p>
-  <b>{{e[1]}}</b> —
-  {{e[2]}} —
-  {{e[3]}}
-</p>
-{% endfor %}
+    <!-- Add Event Form (Teacher use) -->
+    <div class="card">
+        <h3>Add Event / Holiday</h3>
+        <form method="POST">
+            <label>Title</label>
+            <input type="text" name="title" required>
+
+            <label>Description</label>
+            <input type="text" name="desc" required>
+
+            <label>Date</label>
+            <input type="date" name="date" required>
+
+            <br><br>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <!-- Event List (Students + Teachers) -->
+    <div class="card">
+        <h3>Upcoming Events</h3>
+
+        <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#0b3d91; color:white;">
+                <th style="padding:8px; border:1px solid #ccc;">Title</th>
+                <th style="padding:8px; border:1px solid #ccc;">Description</th>
+                <th style="padding:8px; border:1px solid #ccc;">Date</th>
+            </tr>
+
+            {% for e in events %}
+            <tr>
+                <td style="padding:8px; border:1px solid #ccc;">{{e[1]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{e[2]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{e[3]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</div>
+</body>
+</html>

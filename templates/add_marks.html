@@ -1,7 +1,36 @@
-<form method="POST">
-Student ID:<input name="sid"><br>
-Subject:<input name="subject"><br>
-Marks:<input name="marks"><br>
-Credit:<input name="credit"><br>
-<button>Add</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student Marks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">Add Student Marks</div>
+
+<div class="container">
+    <div class="card">
+
+        <h3>Enter Marks</h3>
+
+        <form method="POST">
+
+            <label>Student ID</label>
+            <input type="number" name="sid" required>
+
+            <label>Subject</label>
+            <input type="text" name="sub" required>
+
+            <label>Marks</label>
+            <input type="number" name="marks" required>
+
+            <br><br>
+            <button type="submit">Add Marks</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,89 +1,78 @@
 import sqlite3
-import os
 
-DB_PATH = "database.db"
-
-conn = sqlite3.connect(DB_PATH)
+conn = sqlite3.connect("database.db")
 cur = conn.cursor()
 
-# ------------------ STUDENTS ------------------
+conn.execute("""
+CREATE TABLE IF NOT EXISTS users(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT,
+    password TEXT,
+    role TEXT
+)
+""")
+
+# Default users
+conn.execute("INSERT INTO users (email,password,role) VALUES ('adicharlasainayan@gmail.com','1234','student')")
+conn.execute("INSERT INTO users (email,password,role) VALUES ('pullemlaabhinav@gmail.com','1234','teacher')")
+conn.commit()
+
+# STUDENTS
 cur.execute("""
 CREATE TABLE IF NOT EXISTS students(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    email TEXT UNIQUE,
-    password TEXT,
-    branch TEXT,
-    year INTEGER
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT,
+email TEXT,
+parent_email TEXT
 )
 """)
 
-# ------------------ TEACHERS ------------------
-cur.execute("""
-CREATE TABLE IF NOT EXISTS teachers(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    email TEXT UNIQUE,
-    password TEXT,
-    subject TEXT
-)
-""")
-
-# ------------------ ATTENDANCE ------------------
+# ATTENDANCE
 cur.execute("""
 CREATE TABLE IF NOT EXISTS attendance(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    student_id INTEGER,
-    date TEXT,
-    status TEXT,
-    FOREIGN KEY(student_id) REFERENCES students(id)
+student_id INTEGER,
+date TEXT,
+status TEXT
 )
 """)
 
-# ------------------ EVENTS / HOLIDAYS ------------------
+# EVENTS
 cur.execute("""
 CREATE TABLE IF NOT EXISTS events(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT,
-    description TEXT,
-    date TEXT
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+title TEXT,
+description TEXT,
+date TEXT
 )
 """)
 
-# ------------------ MARKS ------------------
+# MARKS
 cur.execute("""
 CREATE TABLE IF NOT EXISTS marks(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    student_id INTEGER,
-    subject TEXT,
-    marks INTEGER,
-    FOREIGN KEY(student_id) REFERENCES students(id)
+student_id INTEGER,
+subject TEXT,
+marks INTEGER
 )
 """)
 
-# ------------------ TIMETABLE ------------------
+# TIMETABLE
 cur.execute("""
 CREATE TABLE IF NOT EXISTS timetable(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    day TEXT,
-    period TEXT,
-    subject TEXT,
-    teacher TEXT
+day TEXT,
+period TEXT,
+subject TEXT
 )
 """)
 
-# ------------------ PASSED OUT STUDENTS + PACKAGE ------------------
+# ALUMNI
 cur.execute("""
-CREATE TABLE IF NOT EXISTS passed_out(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    branch TEXT,
-    package REAL,
-    year INTEGER
+CREATE TABLE IF NOT EXISTS alumni(
+name TEXT,
+package TEXT,
+year TEXT
 )
 """)
 
 conn.commit()
 conn.close()
-
-print("All tables created successfully ✅")
+print("All tables created")

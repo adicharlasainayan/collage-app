@@ -1,7 +1,35 @@
-Present: {{present}} <br>
-Total: {{total}} <br>
-Percentage: {{percent}}%
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Attendance Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-{% if percent < 65 %}
-<h3 style="color:red">Attendance below 65%</h3>
-{% endif %}
+<div class="navbar">Attendance Records</div>
+
+<div class="container">
+    <div class="card">
+
+        <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#0b3d91; color:white;">
+                <th style="padding:8px; border:1px solid #ccc;">Student ID</th>
+                <th style="padding:8px; border:1px solid #ccc;">Date</th>
+                <th style="padding:8px; border:1px solid #ccc;">Status</th>
+            </tr>
+
+            {% for a in data %}
+            <tr>
+                <td style="padding:8px; border:1px solid #ccc;">{{a[0]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{a[1]}}</td>
+                <td style="padding:8px; border:1px solid #ccc;">{{a[2]}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

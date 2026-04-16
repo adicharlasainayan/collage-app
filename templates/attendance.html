@@ -1,24 +1,66 @@
-<h2>Attendance</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+<style>
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+th,td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:center;
+}
+th{
+    background:#0b3d91;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">Take Attendance (Drona Style)</div>
+
+<div class="container">
+<div class="card">
+
 <form method="POST">
-<table border="1">
+
+<label>Date:</label>
+<input type="date" name="date" required>
+
+<br><br>
+
+<table>
+<tr>
+<th>S.No</th>
+<th>Student Name</th>
+<th>Status</th>
+</tr>
+
 {% for s in students %}
 <tr>
+<td>{{loop.index}}</td>
 <td>{{s[1]}}</td>
 <td>
-<select name="status_{{s[0]}}">
-<option>Present</option>
-<option>Absent</option>
-</select>
-</td>
-<td>
-<select name="late_{{s[0]}}">
-<option value="0">No</option>
-<option value="1">Yes</option>
+<select name="s{{s[0]}}">
+<option value="Present">Present</option>
+<option value="Absent">Absent</option>
+<option value="Late">Late</option>
 </select>
 </td>
 </tr>
 {% endfor %}
+
 </table>
-Date:<input type="date" name="date">
-<button>Submit</button>
+
+<br>
+<button type="submit">Submit Attendance</button>
 </form>
+
+</div>
+</div>
+
+</body>
+</html>
